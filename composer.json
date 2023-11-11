@@ -1,0 +1,22 @@
+{
+    "name": "strukt\/pkg-..\/pkg-auth\/",
+    "description": "N\/A",
+    "type": "strukt-module",
+    "require": [],
+    "require-dev": {
+        "strukt\/framework": "dev-master"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-0": {
+            "Strukt\\": "src\/"
+        }
+    },
+    "authors": [
+        {
+            "name": "pitsolu",
+            "email": "pitsolu@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
