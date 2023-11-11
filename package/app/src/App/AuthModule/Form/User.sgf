@@ -1,0 +1,16 @@
+<?php
+namespace {{app}}\AuthModule\Form;
+
+class User extends \Strukt\Framework\Contract\Form{
+	
+	/**
+	* @IsNotEmpty()
+	* @IsAlpha()
+	*/
+	public string $username;
+
+	/**
+	* @IsNotEmpty()
+	*/
+	public string $password;
+}

@@ -1,0 +1,22 @@
+<?php
+
+namespace {{app}};
+
+class RolePermission extends \Strukt\Db\Type\Red\Contract\Entity{
+
+	/**
+	* @Type(int)
+	*/
+	public  $role_id;
+
+	/**
+	* @Type(int)
+	*/
+	public  $permission_id;
+
+	/**
+	* @Type(datetime)
+	*/
+	public  $created_at;
+
+}

@@ -1,0 +1,129 @@
+<?php
+
+namespace {{app}}\AuthModule\Router;
+
+use Strukt\Http\Request;
+use Strukt\Http\RedirectResponse;
+use Strukt\Type\Str;
+use Strukt\Core\Registry;
+
+class Auth extends \Strukt\Framework\Contract\Router{
+
+	/**
+	* @Route(/login)
+	* @Method(POST)
+	* @Form(User)
+	*/
+	public function login(Request $request){
+
+		$username = $request->get("username");
+		$password = $request->get("password");
+
+		$userC = $this->get("au.ctr.User");
+
+	    if($userC->doAuth($username, $password)){
+
+	    	$user = $userC->findByUsername($username);
+
+	    	if(!str($user->status)->equals("Active")){
+
+	    		return response()->json(array(
+
+		            "success"=>false, 
+		            "message"=>"Your account may be disabled!"
+		        ));
+	    	}
+
+	    	// $request->getSession()->set("username", $username);
+	    	new \Strukt\Auth($username);
+
+	        return response()->json(array(
+
+	            "success"=>true, 
+	            "message"=>"User successfully authenticated."
+	        ));
+	    }
+
+        return response()->json(array(
+
+            "success"=>false,
+            "message"=>"Failed to authenticate user!"
+        ));
+	}
+
+	/**
+	* @Route(/current/user)
+	* @Method(POST)
+	*/
+	public function isLoggedIn(Request $request){
+
+		$username = $request->getSession()->get("username");
+		// $permissions = reg("access.permissions");
+
+		return self::json(array(
+
+			// "username"=>$user->getUsername(),
+			"username"=>$username,
+			"permissions"=>$permissions
+			// "token"=>$token,
+			// "user"=>$user->toArray()
+		));
+	}
+
+	/**
+	* @Route(/current/user/perms)
+	* @Method(POST)
+	*/
+	public function getPerms(Request $request){
+
+		$username = str((string)$request->getUser()->getUsername());
+
+		// print_r(array($request->getUser()->getUsername()));
+
+		if($username->notEquals("")){
+
+			$perms = $this->get("au.ctr.User")->findPermissionsByUsername($username->yield());
+
+			// if(!empty($perms)){
+
+				return self::json(array(
+
+					"success"=>true,
+					"data"=>array(
+
+						"username"=>$username->yield(),
+						"perms"=>$perms
+					)
+				));
+			// }
+		}
+
+		return self::json(array(
+
+			"success"=>false,
+			"message"=>"Failed to get permissions!"
+		));
+	}
+
+	/**
+	* @Route(/logout)
+	* @Method(GET)
+	*/
+	public function logout(Request $request){
+
+		if($request->getSession()->invalidate()){
+
+			return self::json(array(
+
+				"success"=>true,
+				"message"=>"Logged out successfully."
+			));
+		}
+
+		return self::json(array(
+
+			"success"=>false,
+			"message"=>"Try again later!"
+		));
+	}
+}

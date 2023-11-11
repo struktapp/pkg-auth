@@ -1,0 +1,163 @@
+<?php
+
+namespace {{app}}\AuthModule\Controller;
+
+class Role extends \Strukt\Framework\Contract\Controller{
+
+	public function pager(array $filter = [], int $start_from = 1, int $page_size = 10){
+
+		$isNameFilter = array_key_exists("name", $filter);
+
+		$offset = (($start_from -1) * $page_size);
+		$sql = str("SELECT r.id, r.name FROM role r")
+					->concat($isNameFilter?" WHERE r.name LIKE :name":"")
+					->concat(" ORDER BY id ASC")
+					->concat(" LIMIT :offset, :size")
+					->yield();		
+
+		return db()->getAll($sql, array_merge([
+
+			":offset"=>$offset, 
+			":size"=>$page_size
+		], 
+		$isNameFilter?[":name"=>$filter["name"]]:[]));
+	}
+
+	public function findAll(){
+
+		$sql = "SELECT r.id, r.name FROM role r ORDER BY r.name ASC";
+
+		return db()->getAll($sql);
+	}
+
+	public function findByName(string $name){
+
+		$role = db()->findOne("role", " name = ? ", [$name]);
+
+	   	return sync($role);
+	}
+
+	public function find(int $id){
+
+		$role = db("role", $id);
+
+		return $role;
+	}
+
+	public function add(array $role_data){
+
+		extract($role_data);
+
+		$role = $this->get("role");
+
+		try{
+
+			$role->name = $name;
+			$role->descr = $descr;
+			$role->save();
+
+			return $role;
+		}
+		catch(\Exception $e){
+
+			// logger
+
+			return null;
+		}
+	}
+
+	public function update(int $id, array $role_data){
+
+		extract($role_data);
+
+		$role = $this->find($id);
+
+		try{
+
+			$role->name = $name;
+			$role->descr = $descr;
+			$role->save();
+
+			return true;
+		}
+		catch(\Exception $e){
+
+			// logger
+
+			return false;
+		}
+	}
+
+	public function addPermission(int $role_id, int $perm_id){
+
+		$role = $this->find($role_id);
+
+		$perm = $this->get("au.ctr.Permission")->find($perm_id);
+
+		try{
+
+			$rolePerm = $this->get("role_permission");
+			$rolePerm->permmission_id = $perm->id;
+			$rolePerm->role_id = $role->id;
+			$rolePerm->save()
+		}
+		catch(\Exception $e){
+
+			// logger
+		}
+		finally{
+
+			$id = $rolePerm->getId();
+
+			if(!empty($id))
+				return $rolePerm;
+			
+			return null;
+		}
+	}
+
+	public function findPermissionsByRole(string $name){
+
+		$dql = "SELECT p.id, p.name
+				FROM role_permission rp
+				LEFT JOIN permission p ON rp.permission_id = p.id
+				LEFT JOIN role r ON rp.role_id = r.id
+				WHERE r.name = :name
+				ORDER BY p.id DESC";
+
+		return db()->getAll($sql, [":name"=>$name]);
+	}
+
+	public function findPermissionsListByRole(string $name){
+
+		$result = $this->findPermissionsByRole($name);
+
+		$rows = [];
+		foreach($result as $row)
+			$rows[] = $row["name"];
+
+		return $rows;
+	}
+
+	public function findRolePermission(int $role_id, int $perm_id){
+
+		$perm = db()->find("role_permission", 'role_id = ? AND permission_id = ?', [$role_id, $perm_id]);
+
+		return $perm;
+	}
+
+	public function removeRolePermission(\{{app}}\RolePermission $rolePerm){
+
+		return db()->trash($rolePerm->unbox());
+	}
+
+	public function addRolePermission(\{{app}}\Role $role, \{{app}}\Permission $perm){
+
+		$rolePerm = db("role_permission");
+		$rolePerm->role_id = $role->id;
+		$rolePerm->permission_id = $perm->id;
+		$rolePerm->save();
+
+		return $rolePerm;
+	}
+}

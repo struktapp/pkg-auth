@@ -1,0 +1,180 @@
+<?php
+
+namespace {{app}}\AuthModule\Router;
+
+use Strukt\Http\Request;
+use Strukt\Type\Arr;
+
+class User extends \Strukt\Framework\Contract\Router{
+
+	/**
+	* @Route(/user/status)
+	* @Method(POST)
+	* @Permission(user_change_status)
+	*/
+	public function changeStatus(Request $request){
+
+		$username = $request->get("username");
+		$status = $request->get("status");
+
+		if($status == "Pending")
+			$status = "Active";
+		else if($status == "Active")
+			$status = "Inactive";
+		else if($status == "Inactive")
+			$status = "Active";
+
+		if($this->get("au.ctr.User")->changeStatus($username, $status)){
+
+			return response()->json(array(
+
+				"success"=>true,
+				"message"=>"Status changed successfully."
+			));
+		}
+
+		return response()->json(array(
+
+			"success"=>false,
+			"message"=>"Failed to change status!"
+		));
+	}
+
+	/**
+	* @Route(/reset/password)
+	* @Method(POST)
+	* @Permission(reset_password)
+	*/
+	public function resetPassword(Request $request){
+
+		$username = $request->get("username");
+		$password = $request->get("password");
+
+		if($this->get("au.ctr.User")->changePassword($username, $password)){
+
+			return response()->json(array(
+
+				"success"=>true,
+				"message"=>"Password reset successfully."
+			));
+		}
+
+		return response()->json(array(
+
+			"success"=>false,
+			"message"=>"Password was not reset!"
+		));
+	}
+
+	/**
+	* @Route(/user/add)
+	* @Method(POST)
+	* @Permission(user_add)
+	* @Form(User)
+	*/
+	public function add(Request $request){
+
+		$username = $request->get("username");
+		$password = $request->get("password");
+		$role_id = $request->get("role");
+
+		if($this->get("au.ctr.User")->add(array(
+
+			"username"=>$username, 
+			"password"=>$password,
+			"role_id"=>$role_id
+		))){
+
+			return response()->json(array(
+
+				"success"=>true,
+				"message"=>"User successfully updated."
+			));
+		}
+		
+		return response()->json(array(
+
+			"success"=>false,
+			"message"=>"Failed to update user!"
+		));
+	}
+
+	/**
+	* @Route(/user/update)
+	* @Method(POST)
+	* @Permission(user_update)
+	* @Form(User)
+	*/
+	public function update(Request $request){
+
+		$id = $request->get("id");
+		$username = $request->get("username");
+		$password = $request->get("password");
+		$role_id = $request->get("role");
+
+		if($this->get("au.ctr.User")->update($id, array(
+
+			"username" => $username,
+			"password" => $password,
+			"role_id" => $role_id
+		))){
+
+			return response()->json(array(
+
+				"success"=>true,
+				"message"=>"User successfully updated."
+			));
+		}
+		
+		return response()->json(array(
+
+			"success"=>false,
+			"message"=>"Failed to update user!"
+		));
+	}
+
+	/**
+	* @Route(/user/all)
+	* @Method(POST)
+	* @Permission(user_view)
+	*/
+	public function all(Request $request){
+
+		$filter = [];
+
+		$start_at = $request->get("start_at");
+		$page_size = $request->get("page_size");
+
+		$username = $request->get("username");
+		if(!empty($username))
+			$filter["username"] = $username;
+
+		$pager = $this->get("au.ctr.User")->pager($filter, $start_at, $page_size);
+
+		return response()->json($pager);
+
+		// return self::json([
+
+		// 	"rows" => $pager["rs"],
+		// 	"count" => $pager["count"]
+		// ]);
+	}
+
+	/**
+	* @Route(/user/{id:int})
+	* @Method(POST)
+	* @Permission(user_view)
+	*/
+	public function find($id, Request $request){
+
+		$user = $this->get("au.ctr.User")->find($id);
+		$roles = $this->get("au.ctr.Role")->findAll();
+
+		return self::json([
+
+			"username" => $user->username,
+			"role" => $user->role_id,
+			"roles" => $roles
+		]);
+	}
+}

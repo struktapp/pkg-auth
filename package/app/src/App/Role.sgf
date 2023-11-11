@@ -1,0 +1,22 @@
+<?php
+
+namespace {{app}};
+
+class Role extends \Strukt\Db\Type\Red\Contract\Entity{
+
+	/**
+	* @Type(string)
+	*/
+	public  $name;
+
+	/**
+	* @Type(text)
+	*/
+	public  $descr;
+
+	/**
+	* @Type(datetime)
+	*/
+	public  $created_at;
+
+}

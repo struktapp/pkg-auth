@@ -1,0 +1,158 @@
+<?php
+
+namespace {{app}}\AuthModule\Controller;
+
+class User extends \Strukt\Framework\Contract\Controller{
+
+	public function pager(array $filter = [], int $start_from = 1, int $page_size = 10){
+
+		$isNameFilter = array_key_exists("name", $filter);
+
+		$offset = (($start_from -1) * $page_size);
+		$sql = str("SELECT u.id, u.username, u.status FROM user u")
+					->concat($isNameFilter?" WHERE u.username LIKE :username":"")
+					->concat(" ORDER BY id ASC")
+					->concat(" LIMIT :offset, :size")
+					->yield();		
+
+		return db()->getAll($sql, array_merge([
+
+			":offset"=>$offset, 
+			":size"=>$page_size
+		], 
+		$isNameFilter?[":name"=>$filter["name"]]:[]));
+	}
+
+	public function find($id){
+
+		$user = db("user", $id);
+
+		return $user;
+	}
+
+	public function findPermissionsByUsername(string $username){
+
+		$user = $this->findByUsername($username);
+
+		$permissions = $this->get("au.ctr.Role")->findPermissionsListByRole($user->role->permissions);
+
+		return $permissions;
+	}
+
+	public function doAuth(string $username, string $password){
+
+		$user = $this->findByUsername($username);
+
+		if(!is_null($user)){
+
+			if($user->getPassword() === sha1($password)){
+
+				return true;
+			}
+			
+			return false;
+		}
+
+		return false;
+	}
+
+	public function findByUsername(string $username){
+
+		$user = db()->findOne("username", " username = ? ", [$username]);
+
+	   	return sync($user);
+	}
+
+	public function add(array $user_data){
+
+		extract($user_data);
+
+		$user = $this->get("User");
+		$role = $this->get("au.ctr.Role")->find($role_id);
+
+		try{
+
+			$user->username = $username;
+			$user->password = sha1($password);
+			$user->role = $role->id;
+			$user->status = "Pending";
+			$user->save();
+
+			return $user;
+		}
+		catch(\Exception $e){
+
+			//
+
+			return null;
+		}
+	}
+
+	public function update($id, Array $user_data){
+
+		extract($user_data);
+
+		$user = $this->find($id);
+		$role = $this->get("au.ctr.Role")->find($role_id);
+
+		try{
+
+			$user->username = $username;
+			$user->password = sha1($password);
+			$user->role_id = $role->id;
+			$user->save();
+
+			return true;
+		}
+		catch(\Exception $e){
+
+			//
+
+			return false;
+		}
+	}
+
+	public function changePassword(string $username, string $password){
+
+		try{
+
+			$user = $this->findByUsername($username);
+
+			if(is_null($user))
+				raise("AuthModule\Controller\User::changePassword | username does not exist!");
+
+			$user->password = sha1($password);
+			$user->save();
+
+			return true;
+		}
+		catch(\Exception $e){
+
+			//
+
+			return false;
+		}
+	}
+
+	public function changeStatus(string $username, string $status){
+
+		try{
+
+			$user = $this->findByUsername($username);
+
+			if(is_null($user))
+				raise("AuthModule\Controller\User::changePassword | username does not exist!");
+
+			$user->status = $status;
+			$user->save();
+
+			return true;
+		}
+		catch(\Exception $e){
+
+			//
+
+			return false;
+		}
+	}
+}
