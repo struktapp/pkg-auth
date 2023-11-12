@@ -1,15 +1,15 @@
 {
-    "name": "strukt\/pkg-..\/pkg-auth\/",
-    "description": "N\/A",
+    "name": "strukt/pkg-auth",
+    "description": "Strukt RBAC",
     "type": "strukt-module",
-    "require": [],
+    "require": {},
     "require-dev": {
-        "strukt\/framework": "dev-master"
+        "strukt/framework": "dev-master"
     },
     "license": "MIT",
     "autoload": {
         "psr-0": {
-            "Strukt\\": "src\/"
+            "Strukt\\": "src/"
         }
     },
     "authors": [
