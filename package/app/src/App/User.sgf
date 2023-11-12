@@ -16,7 +16,7 @@ class User extends \Strukt\Db\Type\Red\Contract\Entity{
 
 	/**
 	* @Type(enum)
-	* @List(ACTIVE,DISABLED)
+	* @List(ACTIVE,INACTIVE,PENDING)
 	*/
 	public  $status;
 

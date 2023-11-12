@@ -58,7 +58,7 @@ class User extends \Strukt\Framework\Contract\Controller{
 
 	public function findByUsername(string $username){
 
-		$user = db()->findOne("username", " username = ? ", [$username]);
+		$user = db()->findOne("user", " username = ? ", [$username]);
 
 	   	return sync($user);
 	}
@@ -74,21 +74,21 @@ class User extends \Strukt\Framework\Contract\Controller{
 
 			$user->username = $username;
 			$user->password = sha1($password);
-			$user->role = $role->id;
-			$user->status = "Pending";
+			$user->role_id = $role->id;
+			$user->status = "INACTIVE";
 			$user->save();
 
 			return $user;
 		}
 		catch(\Exception $e){
 
-			//
+			cmd("service.logger")->info($e);
 
 			return null;
 		}
 	}
 
-	public function update($id, Array $user_data){
+	public function update(int $id, array $user_data){
 
 		extract($user_data);
 
@@ -106,7 +106,7 @@ class User extends \Strukt\Framework\Contract\Controller{
 		}
 		catch(\Exception $e){
 
-			//
+			cmd("service.logger")->info($e);
 
 			return false;
 		}
@@ -128,7 +128,7 @@ class User extends \Strukt\Framework\Contract\Controller{
 		}
 		catch(\Exception $e){
 
-			//
+			cmd("service.logger")->info($e);
 
 			return false;
 		}
@@ -150,7 +150,7 @@ class User extends \Strukt\Framework\Contract\Controller{
 		}
 		catch(\Exception $e){
 
-			//
+			cmd("service.logger")->info($e);
 
 			return false;
 		}

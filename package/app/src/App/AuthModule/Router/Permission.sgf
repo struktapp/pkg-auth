@@ -18,7 +18,7 @@ class Permission extends \Strukt\Framework\Contract\Router{
 	}
 
 	/**
-	 * @Route(permission/list)
+	 * @Route(/permission/list)
 	 * @Method(POST)
 	 **/
 	public function listAll(){
@@ -37,6 +37,8 @@ class Permission extends \Strukt\Framework\Contract\Router{
 			));
 		}
 		catch(\Exception $e){
+
+			cmd("service.logger")->info($e);
 
 			return response()->json(array(
 
@@ -76,12 +78,13 @@ class Permission extends \Strukt\Framework\Contract\Router{
 	/**
 	* @Route(/permission/add)
 	* @Method(POST)
-	* @Form(Permission)
 	*/
 	public function add(Request $request){
 
 		$name = $request->get("name");
 		$descr = $request->get("descr");
+
+		// dd([$name, $descr]);
 
 		$permission = $this->get("au.ctr.Permission")->add(array(
 

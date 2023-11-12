@@ -3,7 +3,6 @@
 namespace {{app}}\AuthModule\Router;
 
 use Strukt\Http\Request;
-use Strukt\Type\Arr;
 
 class User extends \Strukt\Framework\Contract\Router{
 
@@ -76,7 +75,7 @@ class User extends \Strukt\Framework\Contract\Router{
 
 		$username = $request->get("username");
 		$password = $request->get("password");
-		$role_id = $request->get("role");
+		$role_id = $request->get("role_id");
 
 		if($this->get("au.ctr.User")->add(array(
 
@@ -110,7 +109,7 @@ class User extends \Strukt\Framework\Contract\Router{
 		$id = $request->get("id");
 		$username = $request->get("username");
 		$password = $request->get("password");
-		$role_id = $request->get("role");
+		$role_id = $request->get("role_id");
 
 		if($this->get("au.ctr.User")->update($id, array(
 
@@ -145,6 +144,12 @@ class User extends \Strukt\Framework\Contract\Router{
 		$start_at = $request->get("start_at");
 		$page_size = $request->get("page_size");
 
+		if(empty($start_at))
+			$start_at = 1;
+
+		if(empty($page_size))
+			$page_size = 5;
+
 		$username = $request->get("username");
 		if(!empty($username))
 			$filter["username"] = $username;
@@ -170,7 +175,7 @@ class User extends \Strukt\Framework\Contract\Router{
 		$user = $this->get("au.ctr.User")->find($id);
 		$roles = $this->get("au.ctr.Role")->findAll();
 
-		return self::json([
+		return response()->json([
 
 			"username" => $user->username,
 			"role" => $user->role_id,

@@ -58,6 +58,7 @@ class Permission extends \Strukt\Framework\Contract\Controller{
 	public function add(array $perm_data){
 
 		extract($perm_data);
+		// dd($perm_data);
 
 		$permission = $this->get("Permission");
 

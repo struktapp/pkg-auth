@@ -99,7 +99,7 @@ class Role extends \Strukt\Framework\Contract\Controller{
 			$rolePerm = $this->get("role_permission");
 			$rolePerm->permmission_id = $perm->id;
 			$rolePerm->role_id = $role->id;
-			$rolePerm->save()
+			$rolePerm->save();
 		}
 		catch(\Exception $e){
 
@@ -118,7 +118,7 @@ class Role extends \Strukt\Framework\Contract\Controller{
 
 	public function findPermissionsByRole(string $name){
 
-		$dql = "SELECT p.id, p.name
+		$sql = "SELECT p.id, p.name
 				FROM role_permission rp
 				LEFT JOIN permission p ON rp.permission_id = p.id
 				LEFT JOIN role r ON rp.role_id = r.id
@@ -141,9 +141,9 @@ class Role extends \Strukt\Framework\Contract\Controller{
 
 	public function findRolePermission(int $role_id, int $perm_id){
 
-		$perm = db()->find("role_permission", 'role_id = ? AND permission_id = ?', [$role_id, $perm_id]);
+		$perm = db()->findOne("role_permission", 'role_id = ? AND permission_id = ?', [$role_id, $perm_id]);
 
-		return $perm;
+		return sync($perm);
 	}
 
 	public function removeRolePermission(\{{app}}\RolePermission $rolePerm){
