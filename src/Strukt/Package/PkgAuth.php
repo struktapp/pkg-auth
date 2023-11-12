@@ -82,6 +82,9 @@ class PkgAuth implements Strukt\Framework\Contract\Package{
 
 	public function getRequirements(){
 		
-		return null;
+		return array(
+
+			"pkg-db"
+		);
 	}
 }
