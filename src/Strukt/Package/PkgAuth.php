@@ -2,7 +2,7 @@
 
 namespace Strukt\Package;
 
-class PkgAuth implements Strukt\Framework\Contract\Package{
+class PkgAuth implements \Strukt\Framework\Contract\Package{
 
 	use \Strukt\Traits\ClassHelper;
 
