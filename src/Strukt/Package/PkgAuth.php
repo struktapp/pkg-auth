@@ -10,31 +10,33 @@ class PkgAuth implements \Strukt\Framework\Contract\Package{
 
 	public function __construct(){
 
+		$db = config("package.auth.default");
+
 		$this->manifest = array(
 			"cmd_name"=>"PkgAuth",
 			"package"=>"pkg-auth",
-			"files"=>array(
-				"app/src/App/AuthModule/_AuthModule.php",
-		        "app/src/App/AuthModule/Form/Permission.php",
-		        "app/src/App/AuthModule/Form/User.php",
-		        "app/src/App/AuthModule/Form/Role.php",
-		        "app/src/App/AuthModule/Router/Permission.php",
-		        "app/src/App/AuthModule/Router/User.php",
-		        "app/src/App/AuthModule/Router/Index.php",
-		        "app/src/App/AuthModule/Router/Auth.php",
-		        "app/src/App/AuthModule/Router/Role.php",
-		        "app/src/App/AuthModule/Controller/Permission.php",
-		        "app/src/App/AuthModule/Controller/User.php",
-		        "app/src/App/AuthModule/Controller/Role.php",
-		        "app/src/App/Permission.php",
-		        "app/src/App/User.php",
-		        "app/src/App/RolePermission.php",
-		        "app/src/App/Role.php"
-			)
+			"files"=>array_map(fn($path)=>str($path)->prepend($db?ds($db):"")->yield(), array(
+				"app/src/App/AuthModule/_AuthModule.sgf",
+		        "app/src/App/AuthModule/Form/Permission.sgf",
+		        "app/src/App/AuthModule/Form/User.sgf",
+		        "app/src/App/AuthModule/Form/Role.sgf",
+		        "app/src/App/AuthModule/Router/Permission.sgf",
+		        "app/src/App/AuthModule/Router/User.sgf",
+		        "app/src/App/AuthModule/Router/Index.sgf",
+		        "app/src/App/AuthModule/Router/Auth.sgf",
+		        "app/src/App/AuthModule/Router/Role.sgf",
+		        "app/src/App/AuthModule/Controller/Permission.sgf",
+		        "app/src/App/AuthModule/Controller/User.sgf",
+		        "app/src/App/AuthModule/Controller/Role.sgf",
+		        "app/src/App/Permission.sgf",
+		        "app/src/App/User.sgf",
+		        "app/src/App/RolePermission.sgf",
+		        "app/src/App/Role.sgf"
+			))
 		);
 	}
 
-	public function getSettings($type){
+	public function getSettings($type):array{
 
 		$settings = array(
 			"App:Cli"=>array(
@@ -51,22 +53,22 @@ class PkgAuth implements \Strukt\Framework\Contract\Package{
 		return $settings[$type];
 	}
 
-	public function getName(){
+	public function getName():string{
 
 		return $this->manifest["package"];
 	}
 
-	public function getCmdName(){
+	public function getCmdName():string{
 
 		return $this->manifest["cmd_name"];
 	}
 
-	public function getFiles(){
+	public function getFiles():array|null{
 
 		return $this->manifest["files"];
 	}
 
-	public function getModules(){
+	public function getModules():array|null{
 
 		return null;
 	}
@@ -74,13 +76,13 @@ class PkgAuth implements \Strukt\Framework\Contract\Package{
 	/**
 	* Use php's class_exists function to identify a class that indicated your package is installed
 	*/
-	public function isPublished(){
+	public function isPublished():bool{
 
 		//This will return false because SomeClass::class shouldn't exists
 		return class_exists($this->getClass("{{app}}\AuthModule\{{app}}AuthModule"));
 	}
 
-	public function getRequirements(){
+	public function getRequirements():array|null{
 		
 		return array(
 

@@ -1,0 +1,35 @@
+<?php
+
+namespace {{app}};
+
+class Role extends \Strukt\Db\Type\Pop\Contract\Entity{
+
+	/**
+	* @Type(string)
+	*/
+	public  $name;
+
+	/**
+	* @Type(string)
+	*/
+	public  $descr;
+
+	/**
+	* @Type(datetime)
+	* @Default(now)
+	*/
+	public  $created_at;
+
+	/**
+	* @return \Pop\Db\Record\Collection
+	*/
+	public function permissions(){
+
+		$role_permissions = $this->hasMany(RolePermission::class, 'role_id');
+
+		return arr($role_permissions->getItems())
+				->each(fn($k, $role_permission)=>$role_permission->permission()->name)
+				->yield();
+	}
+
+}

@@ -1,0 +1,11 @@
+<?php
+namespace {{app}}\AuthModule\Form;
+
+class Permission extends \Strukt\Framework\Contract\Form{
+	
+	/**
+	* @IsNotEmpty()
+	* @IsAlpha()
+	*/
+	public string $name;
+}

@@ -1,2 +1,2 @@
-Pkg Auth
+Strukt Auth
 ===

@@ -1,0 +1,27 @@
+<?php
+
+namespace {{app}};
+
+class Permission extends \Strukt\Db\Type\Pop\Contract\Entity{
+
+	/**
+	* @Type(string)
+	*/
+	public  $name;
+
+	/**
+	* @Type(text)
+	*/
+	public  $descr;
+
+	/**
+	* @Type(string)
+	*/
+	public  $tags;
+
+	/**
+	* @Type(datetime)
+	* @Default(now)
+	*/
+	public  $created_at;
+}

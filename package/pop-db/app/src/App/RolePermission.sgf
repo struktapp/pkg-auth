@@ -1,0 +1,38 @@
+<?php
+
+namespace {{app}};
+
+class RolePermission extends \Strukt\Db\Type\Pop\Contract\Entity{
+
+	/**
+	* @Type(int)
+	*/
+	public  $role_id;
+
+	/**
+	* @Type(int)
+	*/
+	public  $permission_id;
+
+	/**
+	* @Type(datetime)
+	* @Default(now)
+	*/
+	public  $created_at;
+
+	/**
+	* @return {{app}}\Role
+	*/
+	public function role(){
+
+		return $this->belongsTo(Role::class, "role_id");
+	}
+
+	/**
+	* @return {{app}}\Permission
+	*/
+	public function permission(){
+
+		return $this->belongsTo(Permission::class, "permission_id");
+	}
+}

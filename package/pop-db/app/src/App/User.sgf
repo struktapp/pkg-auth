@@ -1,0 +1,35 @@
+<?php
+
+namespace {{app}};
+
+class User extends \Strukt\Db\Type\Pop\Contract\Entity{
+
+	/**
+	* @Type(string)
+	*/
+	public  $username;
+
+	/**
+	* @Type(string)
+	*/
+	public  $password;
+
+	/**
+	* @Type(enum)
+	* @List(ACTIVE,INACTIVE,PENDING)
+	*/
+	public  $status;
+
+	/**
+	* @Type(int)
+	*/
+	public  $role_id;
+
+	/**
+	* @Type(datetime)
+	* @Default(now)
+	*/
+	public  $created_at;
+
+
+}

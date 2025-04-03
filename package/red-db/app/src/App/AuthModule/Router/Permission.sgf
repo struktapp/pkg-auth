@@ -1,0 +1,145 @@
+<?php
+
+namespace {{app}}\AuthModule\Router;
+
+use Strukt\Http\Request;
+
+class Permission extends \Strukt\Framework\Contract\Router{
+
+	/**
+	* @Route(/permission/{id:int})
+	* @Method(POST)
+	*/
+	public function find($id, Request $request){
+
+		$permission = $this->get("au.ctr.Permission")->find($id);
+
+		return $permission->toArray();
+	}
+
+	/**
+	 * @Route(/permission/list)
+	 * @Method(POST)
+	 **/
+	public function listAll(){
+
+		try{
+
+			$perms = $this->get("au.ctr.Permission")->findAll();
+
+			return response()->json(array(
+
+				"success"=>true,
+				"data"=>array(
+
+					"permissions"=>$perms
+				)
+			));
+		}
+		catch(\Exception $e){
+
+			cmd("service.logger")->info($e);
+
+			return response()->json(array(
+
+				"success"=>false,
+				"message"=>"Failed to get permissions list!",
+				"error"=>$e->getMessage()
+			));
+		}
+	}
+
+	/**
+	* @Route(/permission/all)
+	* @Method(POST)
+	*/
+	public function all(Request $request){
+
+		$filter = [];
+
+		$start_at = $request->get("start_at");
+		$page_size = $request->get("page_size");
+
+		if(empty($start_at))
+			$start_at = 1;
+
+		if(empty($page_size))
+			$page_size = 5;
+
+		$name = $request->get("name");
+		if(!empty($name))
+			$filter["name"] = $name;
+
+		$pager = $this->get("au.ctr.Permission")->pager($filter, $start_at, $page_size);
+
+		return response()->json($pager);
+	}
+
+	/**
+	* @Route(/permission/add)
+	* @Method(POST)
+	*/
+	public function add(Request $request){
+
+		$name = $request->get("name");
+		$descr = $request->get("descr");
+
+		// dd([$name, $descr]);
+
+		$permission = $this->get("au.ctr.Permission")->add(array(
+
+			"name"=>$name,
+			"descr"=>$descr
+		));
+
+		if(!is_null($permission)){
+
+			return response()->json(array(
+
+				"success"=>true,
+				"message"=>"Permission successfuly saved."
+			));
+		}
+		
+		return response()->json(array(
+
+			"success"=>false,
+			"message"=>"Failed to save permission!"
+		));
+	}
+
+	/**
+	* @Route(/permission/update)
+	* @Method(POST)
+	* @Form(Permission)
+	*/
+	public function update(Request $request){
+
+		$id = $request->get("id");
+		$name = $request->get("name");
+		$descr = $request->get("descr");
+
+		$permC = $this->get("au.ctr.Permission");		
+
+		$success = $permC->update($id, array(
+
+			"name"=>$name,
+			"descr"=>$descr
+		));
+
+		if($success){
+
+			return response()->json(array(
+
+				"success"=>true,
+				"message"=>"Permission successfully updated."
+			));
+		}
+	
+		return response()->json(array(
+
+			"success"=>false,
+			"message"=>"Failed to update permission!"
+		));
+	}
+}

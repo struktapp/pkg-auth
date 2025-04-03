@@ -1,1 +1,16 @@
+./.env
+./.tpl
+./lib
+./cfg
+bootstrap.php
+xcli
+index.php
 .env
+php_errors.log
+./app
+.cache
+vendor
+./app
+db
+xcli.dbx
+xhttp.dbx

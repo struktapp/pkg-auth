@@ -1,0 +1,244 @@
+<?php
+
+namespace {{app}}\AuthModule\Router;
+
+use Strukt\Http\Request;
+
+class Role extends \Strukt\Framework\Contract\Router{
+
+	/**
+	 * @Route(/role/{role_id:int}/add/permission/{perm_id:int})
+	 * @Method(POST)
+	 * @Permission(role_perm_add)
+	 */
+	public function addRolePerm($role_id, $perm_id){
+
+		try{
+
+			$roleCtr = $this->get("au.ctr.Role");
+
+			$role = $roleCtr->find($role_id);	
+			$permission = $this->get("au.ctr.Permission")->find($perm_id);
+
+			$rolePerm = $roleCtr->addRolePermission($role, $permission);
+
+			return response()->json(array(
+
+				"success"=>true,
+				"message"=>"Role successfuly assigned to permission.",
+				"data"=>array(
+
+					"id"=>$rolePerm->id
+				)
+			));
+		}
+		catch(\Exception $e){
+
+			return response()->json(array(
+
+				"success"=>false,
+				"message"=>"Failed to assign permission to role",
+				"error"=>$e->getMessage()
+			));
+		}
+	}
+
+	/**
+	 * @Route(/role/{role_id:int}/remove/permission/{perm_id:int})
+	 * @Method(POST)
+	 * @Permission(role_perm_remove)
+	 */
+	public function removeRolePerm($role_id, $perm_id){
+
+		try{
+
+
+			$roleCtr = $this->get("au.ctr.Role");
+
+			$rolePerm = $roleCtr->findRolePermission($role_id, $perm_id);
+
+			$roleCtr->removeRolePermission($rolePerm);
+
+			return response()->json(array(
+
+				"success"=>true,
+				"message"=>"Permission successfully removed from role."
+			));
+		}
+		catch(\Exception $e){
+
+			return response()->json(array(
+
+				"success"=>false,
+				"message"=>"Failed to remove permission from role!",
+				"error"=>$e->getMessage()
+			));
+		}
+	}
+
+	/**
+	* @Route(/role/{id:int})
+	* @Method(POST)
+	*/
+	public function find($id, Request $request){
+
+		$role = $this->get("au.ctr.Role")->find($id);
+
+		return response()->json($role->toArray());
+	}
+
+	/**
+	* @Route(/role/list)
+	* @Method(POST)
+	*/
+	public function ls(){
+
+	    $roles = $this->get("au.ctr.Role")->findAll();
+
+	    return response()->json($roles);
+	}
+
+	/**
+	* @Route(/role/all)
+	* @Method(POST)
+	*/
+	public function all(Request $request){
+
+		$filter = [];
+
+		$start_at = $request->get("start_at");
+		$page_size = $request->get("page_size");
+
+		if(empty($start_at))
+			$start_at = 1;
+
+		if(empty($page_size))
+			$page_size = 5;
+
+		$name = $request->get("name");
+		if(!empty($name))
+			$filter["name"] = $name;
+
+		$pager = $this->get("au.ctr.Role")->pager($filter, $start_at, $page_size);
+
+		return response()->json($pager);
+
+		// return response()->json([
+
+		// 	"rows" => $pager["rs"],
+		// 	"count" => $pager["count"]
+		// ]);
+	}
+
+	/**
+	* @Route(/role/update)
+	* @Method(POST)
+	* @Permission(role_update)
+	* @Form(Role)
+	*/
+	public function update(Request $request){
+
+		$id = $request->get("id");
+		$name = $request->get("name");
+		$descr = $request->get("descr");
+
+		$success = $this->get("au.ctr.Role")->update($id, array(
+
+			"name"=>$name,
+			"descr"=>$descr
+		));
+
+		if($success){
+
+			return response()->json(array(
+
+				"success"=>true,
+				"message"=>"Role successfuly updated."
+			));
+		}
+		
+		return response()->json(array(
+
+			"success"=>false,
+			"message"=>"Failed to update role!"
+		));
+	}
+
+	/**
+	* @Route(/role/add)
+	* @Method(POST)
+	* @Permission(role_add)
+	* @Form(Role)
+	*/
+	public function add(Request $request){
+
+		$name = $request->get("name");
+		$descr = $request->get("descr");
+
+		$roleFrm = $this->get("au.frm.Role", [$request]);
+
+		$role = $this->get("au.ctr.Role")->add(array(
+
+			"name"=>$name,
+			"descr"=>$descr
+		));
+
+		if(!is_null($role)){
+
+			return response()->json(array(
+
+				"success"=>true,
+				"message"=>"Role successfuly saved."
+			));
+		}
+		
+		return response()->json(array(
+
+			"success"=>false,
+			"message"=>"Failed to save role!"
+		));
+	}
+
+	/**
+	 * @Route(/role/permissions)
+	 * @Method(POST)
+	 * @Permission(role_perm_view)
+	 */
+	public function getPermissions(Request $req){
+
+		try{
+
+			$role_name = $req->get("role_name");
+			$role_id = $req->get("role_id");
+
+			$roleCtr = $this->get("au.ctr.Role");
+
+			if(!empty($role_id)){
+
+				$role = $roleCtr->find($role_id);
+				$role_name = $role->getName();
+			}
+
+			$perms = $roleCtr->findPermissionsByRole($role_name);
+
+			return response()->json(array(
+
+				"success"=>true,
+				"data"=>array(
+
+					"role_name"=>$role_name,
+					"permissions"=>$perms
+				)
+			));
+		}
+		catch(\Exception $e){
+
+			return response()->json(array(
+
+				"success"=>false,
+				"message"=>"Failed to get permissions for role", 
+				"error"=>$e->getMessage()
+			));
+		}
+	}
+}
