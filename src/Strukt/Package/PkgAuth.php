@@ -96,6 +96,6 @@ class PkgAuth implements \Strukt\Framework\Contract\Package{
 
 	public function postInstall():void{
 
-		//
+		fs(".")->rmdir(".cache");
 	}
 }
