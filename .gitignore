@@ -1,13 +1,12 @@
-./.env
-./.tpl
-./lib
-./cfg
+.env
+.tpl
+lib
+cfg
 bootstrap.php
 xcli
 index.php
 .env
 php_errors.log
-./app
 .cache
 vendor
 ./app

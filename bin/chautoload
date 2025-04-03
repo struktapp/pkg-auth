@@ -1,0 +1,12 @@
+#!/bin/bash
+
+autoload=$(cat composer.json | jq '.autoload')
+
+if [[ "$autoload" != null ]]
+then
+    cp ./.bak/composer.autoload-off.json composer.json
+else
+	cp ./.bak/composer.json composer.json
+fi
+
+composer dumpautoload

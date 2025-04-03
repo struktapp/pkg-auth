@@ -1,0 +1,28 @@
+{
+    "name": "strukt/pkg-auth",
+    "description": "Strukt RBAC",
+    "type": "strukt-module",
+    "require": {},
+    "require-dev": {
+        "strukt/pkg-db": "dev-master",
+        "strukt/framework": "v1.1.8-alpha"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-0": {
+            "Strukt\\": "src/"
+        }
+    },
+    "autoload-dev":{
+        "psr-0":{
+            "App\\": "lib/"
+        }
+    },
+    "authors": [
+        {
+            "name": "pitsolu",
+            "email": "pitsolu@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
