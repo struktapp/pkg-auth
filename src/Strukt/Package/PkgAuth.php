@@ -22,7 +22,6 @@ class PkgAuth implements \Strukt\Framework\Contract\Package{
 		        "app/src/App/AuthModule/Form/Role.sgf",
 		        "app/src/App/AuthModule/Router/Permission.sgf",
 		        "app/src/App/AuthModule/Router/User.sgf",
-		        "app/src/App/AuthModule/Router/Index.sgf",
 		        "app/src/App/AuthModule/Router/Auth.sgf",
 		        "app/src/App/AuthModule/Router/Role.sgf",
 		        "app/src/App/AuthModule/Controller/Permission.sgf",
@@ -34,6 +33,11 @@ class PkgAuth implements \Strukt\Framework\Contract\Package{
 		        "app/src/App/Role.sgf"
 			))
 		);
+	}
+
+	public function preInstall():void{
+
+		//
 	}
 
 	public function getSettings($type):array{
@@ -88,5 +92,10 @@ class PkgAuth implements \Strukt\Framework\Contract\Package{
 
 			"pkg-db"
 		);
+	}
+
+	public function postInstall():void{
+
+		//
 	}
 }

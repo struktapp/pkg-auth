@@ -1941,12 +1941,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/strukt-framework.git",
-                "reference": "76c4664298d975f4d6f18f8f15ad870e4a7dee79"
+                "reference": "445bcc7d76bd7cf63de3081d5354aa825454fdf1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/strukt-framework/zipball/76c4664298d975f4d6f18f8f15ad870e4a7dee79",
-                "reference": "76c4664298d975f4d6f18f8f15ad870e4a7dee79",
+                "url": "https://api.github.com/repos/struktapp/strukt-framework/zipball/445bcc7d76bd7cf63de3081d5354aa825454fdf1",
+                "reference": "445bcc7d76bd7cf63de3081d5354aa825454fdf1",
                 "shasum": ""
             },
             "require": {
@@ -1991,7 +1991,7 @@
                 "issues": "https://github.com/struktapp/strukt-framework/issues",
                 "source": "https://github.com/struktapp/strukt-framework/tree/v1.1.8-alpha"
             },
-            "time": "2025-04-03T08:56:18+00:00"
+            "time": "2025-04-03T14:00:05+00:00"
         },
         {
             "name": "strukt/fs",
@@ -2135,12 +2135,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/pkg-db.git",
-                "reference": "cb237ef213cfc7f9852ce8185bab0b2aeb67d829"
+                "reference": "0e9526a4ac60163a706c2c56146b2909c331f7ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/pkg-db/zipball/cb237ef213cfc7f9852ce8185bab0b2aeb67d829",
-                "reference": "cb237ef213cfc7f9852ce8185bab0b2aeb67d829",
+                "url": "https://api.github.com/repos/struktapp/pkg-db/zipball/0e9526a4ac60163a706c2c56146b2909c331f7ad",
+                "reference": "0e9526a4ac60163a706c2c56146b2909c331f7ad",
                 "shasum": ""
             },
             "require": {
@@ -2176,7 +2176,7 @@
                 "issues": "https://github.com/struktapp/pkg-db/issues",
                 "source": "https://github.com/struktapp/pkg-db/tree/master"
             },
-            "time": "2025-04-03T06:21:54+00:00"
+            "time": "2025-04-03T14:04:36+00:00"
         },
         {
             "name": "strukt/process",

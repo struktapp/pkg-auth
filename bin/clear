@@ -9,3 +9,7 @@ rm index.php
 rm .env
 rm php_errors.log
 rm -rf app
+rm -rf .cache
+rm -rf db
+rm xcli.dbx
+rm xhttp.dbx
