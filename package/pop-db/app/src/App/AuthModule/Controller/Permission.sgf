@@ -14,7 +14,7 @@ class Permission extends \Strukt\Framework\Contract\Controller{
 
 		$permission = db()->findOne("permission", " name = ? ", [$name]);
 
-	   	return sync($permission);
+	   	return $permission;
 	}
 
 	public function find(int $id){

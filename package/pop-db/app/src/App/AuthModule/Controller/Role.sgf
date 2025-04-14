@@ -34,7 +34,7 @@ class Role extends \Strukt\Framework\Contract\Controller{
 
 		$role = db()->findOne("role", " name = ? ", [$name]);
 
-	   	return sync($role);
+	   	return $role;
 	}
 
 	public function find(int $id){
@@ -143,7 +143,7 @@ class Role extends \Strukt\Framework\Contract\Controller{
 
 		$perm = db()->findOne("role_permission", 'role_id = ? AND permission_id = ?', [$role_id, $perm_id]);
 
-		return sync($perm);
+		return $perm;
 	}
 
 	public function removeRolePermission(\{{app}}\RolePermission $rolePerm){
