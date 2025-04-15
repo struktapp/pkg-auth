@@ -913,12 +913,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/popphp/pop-db.git",
-                "reference": "a00a273f077f1302c33cd2cee2087519793ab811"
+                "reference": "ca314206e4242fc92094672f87153750a3d5249b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/popphp/pop-db/zipball/a00a273f077f1302c33cd2cee2087519793ab811",
-                "reference": "a00a273f077f1302c33cd2cee2087519793ab811",
+                "url": "https://api.github.com/repos/popphp/pop-db/zipball/ca314206e4242fc92094672f87153750a3d5249b",
+                "reference": "ca314206e4242fc92094672f87153750a3d5249b",
                 "shasum": ""
             },
             "require": {
@@ -976,9 +976,9 @@
             ],
             "support": {
                 "issues": "https://github.com/popphp/pop-db/issues",
-                "source": "https://github.com/popphp/pop-db/tree/6.6.6"
+                "source": "https://github.com/popphp/pop-db/tree/6.6.8"
             },
-            "time": "2025-03-10T14:32:27+00:00"
+            "time": "2025-04-09T23:45:11+00:00"
         },
         {
             "name": "popphp/pop-debug",
@@ -1721,12 +1721,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/strukt-base.git",
-                "reference": "b532166c1578783f1c22943e37329b2752ce37e7"
+                "reference": "2599a11bea055d4e516dc5067170cc38f5219ae4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/strukt-base/zipball/b532166c1578783f1c22943e37329b2752ce37e7",
-                "reference": "b532166c1578783f1c22943e37329b2752ce37e7",
+                "url": "https://api.github.com/repos/struktapp/strukt-base/zipball/2599a11bea055d4e516dc5067170cc38f5219ae4",
+                "reference": "2599a11bea055d4e516dc5067170cc38f5219ae4",
                 "shasum": ""
             },
             "require": {
@@ -1756,20 +1756,20 @@
                 "issues": "https://github.com/struktapp/strukt-base/issues",
                 "source": "https://github.com/struktapp/strukt-base/tree/v1.0.0"
             },
-            "time": "2025-04-07T17:29:01+00:00"
+            "time": "2025-04-13T21:43:32+00:00"
         },
         {
             "name": "strukt/commons",
-            "version": "v1.1.1-alpha",
+            "version": "v1.1.2-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/strukt-commons.git",
-                "reference": "361ff1f1f5fb85df20ca8794efdb7d63008cd970"
+                "reference": "a5dc029ffedd4efa3394f414a189a0f18d6cba68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/strukt-commons/zipball/361ff1f1f5fb85df20ca8794efdb7d63008cd970",
-                "reference": "361ff1f1f5fb85df20ca8794efdb7d63008cd970",
+                "url": "https://api.github.com/repos/struktapp/strukt-commons/zipball/a5dc029ffedd4efa3394f414a189a0f18d6cba68",
+                "reference": "a5dc029ffedd4efa3394f414a189a0f18d6cba68",
                 "shasum": ""
             },
             "require": {
@@ -1802,9 +1802,9 @@
             "description": "Strukt Common Utilities",
             "support": {
                 "issues": "https://github.com/struktapp/strukt-commons/issues",
-                "source": "https://github.com/struktapp/strukt-commons/tree/v1.1.1-alpha"
+                "source": "https://github.com/struktapp/strukt-commons/tree/v1.1.2-alpha"
             },
-            "time": "2025-03-31T17:11:59+00:00"
+            "time": "2025-04-15T09:37:30+00:00"
         },
         {
             "name": "strukt/console",
@@ -1856,17 +1856,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/strukt-contract.git",
-                "reference": "48a95ef89113a8b4a3b1ea62502fe6dc4e0e03aa"
+                "reference": "9839f3dfee434eb34b102b79c1c7df84e37ce475"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/strukt-contract/zipball/48a95ef89113a8b4a3b1ea62502fe6dc4e0e03aa",
-                "reference": "48a95ef89113a8b4a3b1ea62502fe6dc4e0e03aa",
+                "url": "https://api.github.com/repos/struktapp/strukt-contract/zipball/9839f3dfee434eb34b102b79c1c7df84e37ce475",
+                "reference": "9839f3dfee434eb34b102b79c1c7df84e37ce475",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.1",
-                "strukt/commons": "v1.1.1-alpha"
+                "strukt/commons": "v1.1.2-alpha"
             },
             "type": "package",
             "autoload": {
@@ -1889,7 +1889,7 @@
                 "issues": "https://github.com/struktapp/strukt-contract/issues",
                 "source": "https://github.com/struktapp/strukt-contract/tree/v1.1.1-alpha"
             },
-            "time": "2025-03-22T20:29:17+00:00"
+            "time": "2025-04-14T19:10:27+00:00"
         },
         {
             "name": "strukt/event",
@@ -1941,12 +1941,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/strukt-framework.git",
-                "reference": "6b7161ab8d66a9dcfdaff9499d42947d05437ff0"
+                "reference": "56850d6bac08ea0ecd91bd4892831ec7ce2c6513"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/strukt-framework/zipball/6b7161ab8d66a9dcfdaff9499d42947d05437ff0",
-                "reference": "6b7161ab8d66a9dcfdaff9499d42947d05437ff0",
+                "url": "https://api.github.com/repos/struktapp/strukt-framework/zipball/56850d6bac08ea0ecd91bd4892831ec7ce2c6513",
+                "reference": "56850d6bac08ea0ecd91bd4892831ec7ce2c6513",
                 "shasum": ""
             },
             "require": {
@@ -1991,7 +1991,7 @@
                 "issues": "https://github.com/struktapp/strukt-framework/issues",
                 "source": "https://github.com/struktapp/strukt-framework/tree/v1.1.8-alpha"
             },
-            "time": "2025-04-06T22:53:32+00:00"
+            "time": "2025-04-15T07:21:27+00:00"
         },
         {
             "name": "strukt/fs",
@@ -1999,12 +1999,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/strukt-fs.git",
-                "reference": "a9b4b249e3002e8b7acfbd2015eae8bc6d07ea20"
+                "reference": "93179251227ae85adc649cee0575252f5ea15d0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/strukt-fs/zipball/a9b4b249e3002e8b7acfbd2015eae8bc6d07ea20",
-                "reference": "a9b4b249e3002e8b7acfbd2015eae8bc6d07ea20",
+                "url": "https://api.github.com/repos/struktapp/strukt-fs/zipball/93179251227ae85adc649cee0575252f5ea15d0b",
+                "reference": "93179251227ae85adc649cee0575252f5ea15d0b",
                 "shasum": ""
             },
             "require": {
@@ -2039,7 +2039,7 @@
                 "issues": "https://github.com/struktapp/strukt-fs/issues",
                 "source": "https://github.com/struktapp/strukt-fs/tree/v1.1.0"
             },
-            "time": "2025-04-06T21:20:53+00:00"
+            "time": "2025-04-15T18:45:54+00:00"
         },
         {
             "name": "strukt/generator",
@@ -2047,17 +2047,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/strukt-generator.git",
-                "reference": "22cab6a17b52ee0b29abb40db6399e5879a93c45"
+                "reference": "c99fac067d35c2e68386d6f27590e3d5ad60062d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/strukt-generator/zipball/22cab6a17b52ee0b29abb40db6399e5879a93c45",
-                "reference": "22cab6a17b52ee0b29abb40db6399e5879a93c45",
+                "url": "https://api.github.com/repos/struktapp/strukt-generator/zipball/c99fac067d35c2e68386d6f27590e3d5ad60062d",
+                "reference": "c99fac067d35c2e68386d6f27590e3d5ad60062d",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.1",
-                "strukt/commons": "v1.1.1-alpha"
+                "strukt/commons": "v1.1.2-alpha"
             },
             "require-dev": {
                 "strukt/console": "v1.0.0"
@@ -2089,7 +2089,7 @@
                 "issues": "https://github.com/struktapp/strukt-generator/issues",
                 "source": "https://github.com/struktapp/strukt-generator/tree/v1.1.2-alpha"
             },
-            "time": "2025-04-06T14:07:24+00:00"
+            "time": "2025-04-14T19:23:38+00:00"
         },
         {
             "name": "strukt/math",
@@ -2141,12 +2141,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/pkg-db.git",
-                "reference": "2e93821d17cb83348bfe5a89d4228bdc690adc40"
+                "reference": "8777c1ae536e090c9b7d90a3672a9b04e375c27b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/pkg-db/zipball/2e93821d17cb83348bfe5a89d4228bdc690adc40",
-                "reference": "2e93821d17cb83348bfe5a89d4228bdc690adc40",
+                "url": "https://api.github.com/repos/struktapp/pkg-db/zipball/8777c1ae536e090c9b7d90a3672a9b04e375c27b",
+                "reference": "8777c1ae536e090c9b7d90a3672a9b04e375c27b",
                 "shasum": ""
             },
             "require": {
@@ -2184,7 +2184,7 @@
                 "issues": "https://github.com/struktapp/pkg-db/issues",
                 "source": "https://github.com/struktapp/pkg-db/tree/master"
             },
-            "time": "2025-04-03T21:54:26+00:00"
+            "time": "2025-04-15T10:25:46+00:00"
         },
         {
             "name": "strukt/process",
@@ -2236,12 +2236,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/strukt-router.git",
-                "reference": "2bfb743ae1a551f3c3f2ef25b2b7827e91d4cf72"
+                "reference": "81ff3f9c39c5a23cd7a5973e251f1458defa7d94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/strukt-router/zipball/2bfb743ae1a551f3c3f2ef25b2b7827e91d4cf72",
-                "reference": "2bfb743ae1a551f3c3f2ef25b2b7827e91d4cf72",
+                "url": "https://api.github.com/repos/struktapp/strukt-router/zipball/81ff3f9c39c5a23cd7a5973e251f1458defa7d94",
+                "reference": "81ff3f9c39c5a23cd7a5973e251f1458defa7d94",
                 "shasum": ""
             },
             "require": {
@@ -2281,7 +2281,7 @@
                 "issues": "https://github.com/struktapp/strukt-router/issues",
                 "source": "https://github.com/struktapp/strukt-router/tree/v1.1.5-alpha"
             },
-            "time": "2025-04-06T15:57:21+00:00"
+            "time": "2025-04-13T21:49:58+00:00"
         },
         {
             "name": "symfony/console",
@@ -2451,12 +2451,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "6f7fb440036ce73bfb46ceac0bdefaae1ccc6b14"
+                "reference": "ee9519508f9f56b18fce74fdcb6deefe9a89c287"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/6f7fb440036ce73bfb46ceac0bdefaae1ccc6b14",
-                "reference": "6f7fb440036ce73bfb46ceac0bdefaae1ccc6b14",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/ee9519508f9f56b18fce74fdcb6deefe9a89c287",
+                "reference": "ee9519508f9f56b18fce74fdcb6deefe9a89c287",
                 "shasum": ""
             },
             "require": {
@@ -2521,7 +2521,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-04-07T19:47:20+00:00"
+            "time": "2025-04-09T08:14:14+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -3094,12 +3094,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "3093e031b2fbdca117b919d8b5206b41a7009066"
+                "reference": "a75110076ac661a4a52792b5a1d286d113653a70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/3093e031b2fbdca117b919d8b5206b41a7009066",
-                "reference": "3093e031b2fbdca117b919d8b5206b41a7009066",
+                "url": "https://api.github.com/repos/symfony/string/zipball/a75110076ac661a4a52792b5a1d286d113653a70",
+                "reference": "a75110076ac661a4a52792b5a1d286d113653a70",
                 "shasum": ""
             },
             "require": {
@@ -3173,7 +3173,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-03-17T19:44:19+00:00"
+            "time": "2025-02-24T14:05:52+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -3181,12 +3181,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "4ad10cf8b020e77ba665305bb7804389884b4837"
+                "reference": "22560f80c0c5cd58cc0bcaf73455ffd81eb380d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/4ad10cf8b020e77ba665305bb7804389884b4837",
-                "reference": "4ad10cf8b020e77ba665305bb7804389884b4837",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/22560f80c0c5cd58cc0bcaf73455ffd81eb380d5",
+                "reference": "22560f80c0c5cd58cc0bcaf73455ffd81eb380d5",
                 "shasum": ""
             },
             "require": {
@@ -3258,7 +3258,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-01-17T11:26:11+00:00"
+            "time": "2025-04-09T07:34:50+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

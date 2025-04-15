@@ -14,3 +14,5 @@ db
 /app/
 xcli.dbx
 xhttp.dbx
+.bak/*.zip
+.bak/app/
