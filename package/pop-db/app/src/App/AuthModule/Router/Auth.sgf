@@ -3,9 +3,6 @@
 namespace {{app}}\AuthModule\Router;
 
 use Strukt\Http\Request;
-use Strukt\Http\RedirectResponse;
-use Strukt\Type\Str;
-use Strukt\Core\Registry;
 
 class Auth extends \Strukt\Framework\Contract\Router{
 
@@ -34,7 +31,6 @@ class Auth extends \Strukt\Framework\Contract\Router{
 		        ));
 	    	}
 
-	    	// $request->getSession()->set("username", $username);
 	    	new \Strukt\Auth($username);
 
 	        return response()->json(array(
@@ -58,15 +54,11 @@ class Auth extends \Strukt\Framework\Contract\Router{
 	public function isLoggedIn(Request $request){
 
 		$username = $request->getSession()->get("username");
-		// $permissions = reg("access.permissions");
 
 		return self::json(array(
 
-			// "username"=>$user->getUsername(),
 			"username"=>$username,
 			"permissions"=>$permissions
-			// "token"=>$token,
-			// "user"=>$user->toArray()
 		));
 	}
 
@@ -78,13 +70,9 @@ class Auth extends \Strukt\Framework\Contract\Router{
 
 		$username = str((string)$request->getUser()->getUsername());
 
-		// print_r(array($request->getUser()->getUsername()));
-
 		if($username->notEquals("")){
 
 			$perms = $this->get("au.ctr.User")->findPermissionsByUsername($username->yield());
-
-			// if(!empty($perms)){
 
 				return self::json(array(
 
@@ -95,7 +83,6 @@ class Auth extends \Strukt\Framework\Contract\Router{
 						"perms"=>$perms
 					)
 				));
-			// }
 		}
 
 		return self::json(array(

@@ -14,5 +14,9 @@ db
 /app/
 xcli.dbx
 xhttp.dbx
-.bak/*.zip
-.bak/app/
+# .bak/*.zip
+# .bak/app/
+/.bak/app
+/bin/seed
+/bin/seed-acl
+/payroll.sqlite

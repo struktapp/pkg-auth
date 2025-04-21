@@ -5,14 +5,16 @@ class Permission extends \Strukt\Framework\Contract\Controller{
 
 	public function findAll(){
 
-		$sql = "SELECT p.id, p.name FROM permission p ORDER BY p.name ASC";
+		$sql = select("p.id, p.name")
+				->from("permission p")
+				->orderBy("p.name", order:"ASC");
 
-		return db()->getAll($sql);
+		return pdo()->execQuery($sql);
 	}
 
 	public function findByName(string $name){
 
-		$permission = db()->findOne("permission", " name = ? ", [$name]);
+		$permission = db("permission")->findOne(["name"=>$name]);
 
 	   	return $permission;
 	}
@@ -26,39 +28,37 @@ class Permission extends \Strukt\Framework\Contract\Controller{
 
 	public function findRolesByPermission(string $name){
 
-		$sql = "SELECT r.id as role_id, p.id as perm_id, 
-						r.name as role_name, p.name as perm_name
-					FROM role_permission rp 
-					LEFT JOIN permission p ON rp.permission_id = p.id
-					LEFT JOIN role r ON rp.role_id = r.id
-					WHERE p.name = :name";
+		$sql = select("r.id as role_id, p.id as perm_id")
+				->addSelect("r.name as role_name, p.name as perm_name")
+				->from("role_permission rp")
+				->leftjoin("permission p ON rp.permission_id = p.id")
+				->leftjoin("role r ON rp.role_id = r.id")
+				->where("p.name = :name");
 
-		return db()->getAll($sql, [":name"=>$name]);
+		return pdo()->execQuery($sql, ["name"=>$name]);
 	}
 
 	public function pager(array $filter = [], int $start_from = 1, int $page_size = 10){
 
-		$isNameFilter = array_key_exists("name", $filter);
+		$hasFilter = array_key_exists("name", $filter);
 
-		$offset = (($start_from -1) * $page_size);
-		$sql = str("SELECT p.id, p.name FROM permission p")
-					->concat($isNameFilter?" WHERE p.name LIKE :name":"")
-					->concat(" ORDER BY id ASC")
-					->concat(" LIMIT :offset, :size")
-					->yield();		
+		$sql = select("p.id, p.name")->from("permission p");
+		$sql = $hasFilter?$sql->where("p.name LIKE :name"):$sql;
+		$sql = $sql->orderBy("id", order:"ASC")->page($start_from, $page_size);
 
-		return db()->getAll($sql, array_merge([
+		$pdo = pdo();
+		if($hasFilter)
+			$rs = $pdo->execQuery((string)$sql, ["name"=>$filter["name"]]);
 
-			":offset"=>$offset, 
-			":size"=>$page_size
-		], 
-		$isNameFilter?[":name"=>$filter["name"]]:[]));
+		if(negate($hasFilter))
+			$rs = $pdo->execQuery((string)$sql);
+
+		return $rs;
 	}
 
 	public function add(array $perm_data){
 
 		extract($perm_data);
-		// dd($perm_data);
 
 		$permission = $this->get("Permission");
 
@@ -72,9 +72,7 @@ class Permission extends \Strukt\Framework\Contract\Controller{
 		}
 		catch(\Exception $e){
 
-			/**
-			* @Todo put logger here
-			*/
+			cmd("service.logger")->error($e);
 
 			return null;
 		}
@@ -96,9 +94,7 @@ class Permission extends \Strukt\Framework\Contract\Controller{
 		}
 		catch(\Exception $e){
 
-			/**
-			* @Todo put logger here
-			*/
+			cmd("service.logger")->error($e);
 
 			return false;
 		}

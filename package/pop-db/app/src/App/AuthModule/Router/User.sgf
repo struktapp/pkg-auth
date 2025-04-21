@@ -16,12 +16,9 @@ class User extends \Strukt\Framework\Contract\Router{
 		$username = $request->get("username");
 		$status = $request->get("status");
 
-		if($status == "Pending")
-			$status = "Active";
-		else if($status == "Active")
-			$status = "Inactive";
-		else if($status == "Inactive")
-			$status = "Active";
+		if($status == "Pending") $status = "Active";
+		else if($status == "Active") $status = "Inactive";
+		else if($status == "Inactive") $status = "Active";
 
 		if($this->get("au.ctr.User")->changeStatus($username, $status)){
 

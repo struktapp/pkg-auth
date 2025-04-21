@@ -122,12 +122,6 @@ class Role extends \Strukt\Framework\Contract\Router{
 		$pager = $this->get("au.ctr.Role")->pager($filter, $start_at, $page_size);
 
 		return response()->json($pager);
-
-		// return response()->json([
-
-		// 	"rows" => $pager["rs"],
-		// 	"count" => $pager["count"]
-		// ]);
 	}
 
 	/**

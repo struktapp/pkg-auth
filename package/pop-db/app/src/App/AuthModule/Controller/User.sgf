@@ -6,21 +6,20 @@ class User extends \Strukt\Framework\Contract\Controller{
 
 	public function pager(array $filter = [], int $start_from = 1, int $page_size = 10){
 
-		$isNameFilter = array_key_exists("name", $filter);
+		$hasFilter = array_key_exists("username", $filter);	
 
-		$offset = (($start_from -1) * $page_size);
-		$sql = str("SELECT u.id, u.username, u.status FROM user u")
-					->concat($isNameFilter?" WHERE u.username LIKE :username":"")
-					->concat(" ORDER BY id ASC")
-					->concat(" LIMIT :offset, :size")
-					->yield();		
+		$sql = select("u.id, u.username, u.status")->from("user u");
+		$sql = $hasFilter?$sql->where("u.username LIKE :username"):$sql;
+		$sql = $sql->orderBy("id", order:"ASC")->page($start_from, $page_size);
 
-		return db()->getAll($sql, array_merge([
+		$pdo = pdo();
+		if($hasFilter)
+			$rs = $pdo->execQuery((string)$sql, ["username"=>$filter["username"]]);
 
-			":offset"=>$offset, 
-			":size"=>$page_size
-		], 
-		$isNameFilter?[":name"=>$filter["name"]]:[]));
+		if(negate($hasFilter))
+			$rs = $pdo->execQuery((string)$sql);
+
+		return $rs;
 	}
 
 	public function find($id){
@@ -34,7 +33,7 @@ class User extends \Strukt\Framework\Contract\Controller{
 
 		$user = $this->findByUsername($username);
 
-		$permissions = $this->get("au.ctr.Role")->findPermissionsListByRole($user->role->permissions);
+		$permissions = $this->get("au.ctr.Role")->findPermissionsListByRole($user->role->name);
 
 		return $permissions;
 	}
@@ -43,22 +42,16 @@ class User extends \Strukt\Framework\Contract\Controller{
 
 		$user = $this->findByUsername($username);
 
-		if(!is_null($user)){
-
-			if($user->getPassword() === sha1($password)){
-
+		if(!is_null($user))
+			if(bcry($password)->verify($user->password))
 				return true;
-			}
 			
-			return false;
-		}
-
 		return false;
 	}
 
 	public function findByUsername(string $username){
 
-		$user = db()->findOne("user", " username = ? ", [$username]);
+		$user = db("user")->findOne(["username"=>$username]);
 
 	   	return $user;
 	}
@@ -98,7 +91,7 @@ class User extends \Strukt\Framework\Contract\Controller{
 		try{
 
 			$user->username = $username;
-			$user->password = sha1($password);
+			$user->password = bcry($password)->encode();
 			$user->role_id = $role->id;
 			$user->save();
 
@@ -106,7 +99,7 @@ class User extends \Strukt\Framework\Contract\Controller{
 		}
 		catch(\Exception $e){
 
-			cmd("service.logger")->info($e);
+			cmd("service.logger")->error($e);
 
 			return false;
 		}
@@ -128,7 +121,7 @@ class User extends \Strukt\Framework\Contract\Controller{
 		}
 		catch(\Exception $e){
 
-			cmd("service.logger")->info($e);
+			cmd("service.logger")->error($e);
 
 			return false;
 		}
@@ -150,7 +143,7 @@ class User extends \Strukt\Framework\Contract\Controller{
 		}
 		catch(\Exception $e){
 
-			cmd("service.logger")->info($e);
+			cmd("service.logger")->error($e);
 
 			return false;
 		}

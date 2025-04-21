@@ -6,33 +6,34 @@ class Role extends \Strukt\Framework\Contract\Controller{
 
 	public function pager(array $filter = [], int $start_from = 1, int $page_size = 10){
 
-		$isNameFilter = array_key_exists("name", $filter);
+		$hasFilter = array_key_exists("name", $filter);
 
-		$offset = (($start_from -1) * $page_size);
-		$sql = str("SELECT r.id, r.name FROM role r")
-					->concat($isNameFilter?" WHERE r.name LIKE :name":"")
-					->concat(" ORDER BY id ASC")
-					->concat(" LIMIT :offset, :size")
-					->yield();		
+		$sql = select("r.id, r.name")->from("role r");
+		$sql = $hasFilter?$sql->where("r.name LIKE :name"):$sql;
+		$sql = $sql->orderBy("id", order:"ASC")->page($start_from, $page_size);
 
-		return db()->getAll($sql, array_merge([
+		$pdo = pdo();
+		if($hasFilter)
+			$rs = $pdo->execQuery((string)$sql, ["name"=>$filter["name"]]);
 
-			":offset"=>$offset, 
-			":size"=>$page_size
-		], 
-		$isNameFilter?[":name"=>$filter["name"]]:[]));
+		if(negate($hasFilter))
+			$rs = $pdo->execQuery((string)$sql);
+
+		return $rs;
 	}
 
 	public function findAll(){
 
-		$sql = "SELECT r.id, r.name FROM role r ORDER BY r.name ASC";
+		$sql = select("r.id, r.name")
+				->from("role r")
+				->orderBy("r.name", order:"ASC");
 
-		return db()->getAll($sql);
+		return pdo()->execQuery((string)$sql);
 	}
 
 	public function findByName(string $name){
 
-		$role = db()->findOne("role", " name = ? ", [$name]);
+		$role = db("role")->findOne(["name"=>$name]);
 
 	   	return $role;
 	}
@@ -60,7 +61,7 @@ class Role extends \Strukt\Framework\Contract\Controller{
 		}
 		catch(\Exception $e){
 
-			// logger
+			cmd("service.logger")->error($e);
 
 			return null;
 		}
@@ -82,7 +83,7 @@ class Role extends \Strukt\Framework\Contract\Controller{
 		}
 		catch(\Exception $e){
 
-			// logger
+			cmd("service.logger")->error($e);
 
 			return false;
 		}
@@ -103,12 +104,11 @@ class Role extends \Strukt\Framework\Contract\Controller{
 		}
 		catch(\Exception $e){
 
-			// logger
+			cmd("service.logger")->error($e);
 		}
 		finally{
 
-			$id = $rolePerm->getId();
-
+			$id = $rolePerm->id;
 			if(!empty($id))
 				return $rolePerm;
 			
@@ -118,14 +118,14 @@ class Role extends \Strukt\Framework\Contract\Controller{
 
 	public function findPermissionsByRole(string $name){
 
-		$sql = "SELECT p.id, p.name
-				FROM role_permission rp
-				LEFT JOIN permission p ON rp.permission_id = p.id
-				LEFT JOIN role r ON rp.role_id = r.id
-				WHERE r.name = :name
-				ORDER BY p.id DESC";
+		$sql = select("p.id, p.name")
+				->from("role_permission rp")
+				->leftjoin("permission p ON rp.permission_id = p.id")
+				->leftjoin("role r ON rp.role_id = r.id")
+				->where("r.name = :name")
+				->orderBy("p.id", order:"DESC");
 
-		return db()->getAll($sql, [":name"=>$name]);
+		return pdo()->execQuery((string)$sql, ["name"=>$name]);
 	}
 
 	public function findPermissionsListByRole(string $name){
@@ -141,14 +141,14 @@ class Role extends \Strukt\Framework\Contract\Controller{
 
 	public function findRolePermission(int $role_id, int $perm_id){
 
-		$perm = db()->findOne("role_permission", 'role_id = ? AND permission_id = ?', [$role_id, $perm_id]);
+		$perm = db("role_permission")->findOne(["role_id"=>$role_id, "permission_id"=>$perm_id]);
 
 		return $perm;
 	}
 
 	public function removeRolePermission(\{{app}}\RolePermission $rolePerm){
 
-		return db()->trash($rolePerm->unbox());
+		raise("ctr[Role::removeRolePermission] unimplemented!");
 	}
 
 	public function addRolePermission(\{{app}}\Role $role, \{{app}}\Permission $perm){
