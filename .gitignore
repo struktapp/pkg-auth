@@ -19,4 +19,5 @@ xhttp.dbx
 /.bak/app
 /bin/seed
 /bin/seed-acl
+/bin/sqlite
 /payroll.sqlite
