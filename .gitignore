@@ -17,6 +17,9 @@ xhttp.dbx
 # .bak/*.zip
 # .bak/app/
 /.bak/app
+/.bak/lib
+/.bak/bin
+/.bak/cfg
 /bin/seed
 /bin/seed-acl
 /bin/sqlite

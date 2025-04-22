@@ -57,8 +57,7 @@ class Auth extends \Strukt\Framework\Contract\Router{
 
 		return self::json(array(
 
-			"username"=>$username,
-			"permissions"=>$permissions
+			"username"=>$username
 		));
 	}
 
