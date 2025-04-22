@@ -17,28 +17,28 @@ class Auth extends \Strukt\Framework\Contract\Router{
 		$password = $request->get("password");
 
 		$userC = $this->get("au.ctr.User");
+		$user = $userC->findByUsername($username);
 
-	    if($userC->doAuth($username, $password)){
+		if(negate(empty($user->toArray())))
+		    if($userC->doAuth($username, $password)){
 
-	    	$user = $userC->findByUsername($username);
+		    	if(!str($user->status)->equals("Active")){
 
-	    	if(!str($user->status)->equals("Active")){
+		    		return response()->json(array(
 
-	    		return response()->json(array(
+			            "success"=>false, 
+			            "message"=>"Your account may be disabled!"
+			        ));
+		    	}
 
-		            "success"=>false, 
-		            "message"=>"Your account may be disabled!"
+		    	new \Strukt\Auth($username);
+
+		        return response()->json(array(
+
+		            "success"=>true, 
+		            "message"=>"User successfully authenticated."
 		        ));
-	    	}
-
-	    	new \Strukt\Auth($username);
-
-	        return response()->json(array(
-
-	            "success"=>true, 
-	            "message"=>"User successfully authenticated."
-	        ));
-	    }
+		    }
 
         return response()->json(array(
 

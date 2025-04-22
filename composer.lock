@@ -2490,12 +2490,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/pkg-db.git",
-                "reference": "f6b416ca27e43a88b111889418baf0a8189b8aee"
+                "reference": "29d941e58bc0cdca7cd48a4700213cf45c6c68d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/pkg-db/zipball/f6b416ca27e43a88b111889418baf0a8189b8aee",
-                "reference": "f6b416ca27e43a88b111889418baf0a8189b8aee",
+                "url": "https://api.github.com/repos/struktapp/pkg-db/zipball/29d941e58bc0cdca7cd48a4700213cf45c6c68d9",
+                "reference": "29d941e58bc0cdca7cd48a4700213cf45c6c68d9",
                 "shasum": ""
             },
             "require": {
@@ -2533,7 +2533,7 @@
                 "issues": "https://github.com/struktapp/pkg-db/issues",
                 "source": "https://github.com/struktapp/pkg-db/tree/master"
             },
-            "time": "2025-04-21T14:13:29+00:00"
+            "time": "2025-04-22T00:01:10+00:00"
         },
         {
             "name": "strukt/process",
