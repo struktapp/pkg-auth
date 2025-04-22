@@ -14,13 +14,10 @@ db
 /app/
 xcli.dbx
 xhttp.dbx
-# .bak/*.zip
-# .bak/app/
-/.bak/app
-/.bak/lib
-/.bak/bin
-/.bak/cfg
+/.bak/*
+!/.bak/composer.autoload-off.json
+!/.bak/composer.json
 /bin/seed
 /bin/seed-acl
 /bin/sqlite
-/payroll.sqlite
+/*.sqlite
