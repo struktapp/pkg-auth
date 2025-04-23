@@ -3,7 +3,6 @@
 lib
 cfg
 bootstrap.php
-xcli
 index.php
 .env
 php_errors.log
@@ -14,10 +13,15 @@ db
 /app/
 xcli.dbx
 xhttp.dbx
+xhttp
+xcli
 /.bak/*
 !/.bak/composer.autoload-off.json
 !/.bak/composer.json
 /bin/seed
 /bin/seed-acl
 /bin/sqlite
+/bin/db
+/bin/xcli.php
+/bin/xhttp.php
 /*.sqlite

@@ -4,7 +4,6 @@ rm -rf .tpl
 rm -rf lib
 rm -rf cfg
 rm bootstrap.php
-rm xcli
 rm index.php
 rm .env
 rm php_errors.log
@@ -13,3 +12,12 @@ rm -rf .cache
 rm -rf db
 rm xcli.dbx
 rm xhttp.dbx
+rm xcli
+rm xhttp
+rm *.sqlite
+rm ./bin/seed
+rm ./bin/seed-acl
+rm ./bin/sqlite
+rm bin/db
+rm bin/xcli.php
+rm bin/xhttp.php
