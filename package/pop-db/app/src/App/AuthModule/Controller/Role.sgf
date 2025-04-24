@@ -12,12 +12,11 @@ class Role extends \Strukt\Framework\Contract\Controller{
 		$sql = $hasFilter?$sql->where("r.name LIKE :name"):$sql;
 		$sql = $sql->orderBy("id", order:"ASC")->page($start_from, $page_size);
 
-		$pdo = pdo();
 		if($hasFilter)
-			$rs = $pdo->execQuery((string)$sql, ["name"=>$filter["name"]]);
+			$rs = resultset($sql, ["name"=>$filter["name"]])->yield();
 
 		if(negate($hasFilter))
-			$rs = $pdo->execQuery((string)$sql);
+			$rs = resultset($sql)->yield();
 
 		return $rs;
 	}
@@ -28,7 +27,7 @@ class Role extends \Strukt\Framework\Contract\Controller{
 				->from("role r")
 				->orderBy("r.name", order:"ASC");
 
-		return pdo()->execQuery((string)$sql);
+		return resultset($sql)->yield();
 	}
 
 	public function findByName(string $name){
@@ -125,7 +124,7 @@ class Role extends \Strukt\Framework\Contract\Controller{
 				->where("r.name = :name")
 				->orderBy("p.id", order:"DESC");
 
-		return pdo()->execQuery((string)$sql, ["name"=>$name]);
+		return resultset($sql, ["name"=>$name])->yield();
 	}
 
 	public function findPermissionsListByRole(string $name){

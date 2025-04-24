@@ -192,12 +192,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/strukt-base.git",
-                "reference": "2599a11bea055d4e516dc5067170cc38f5219ae4"
+                "reference": "7c1e9d00048cf7b6e57860f6d91178059d2f1b15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/strukt-base/zipball/2599a11bea055d4e516dc5067170cc38f5219ae4",
-                "reference": "2599a11bea055d4e516dc5067170cc38f5219ae4",
+                "url": "https://api.github.com/repos/struktapp/strukt-base/zipball/7c1e9d00048cf7b6e57860f6d91178059d2f1b15",
+                "reference": "7c1e9d00048cf7b6e57860f6d91178059d2f1b15",
                 "shasum": ""
             },
             "require": {
@@ -227,7 +227,7 @@
                 "issues": "https://github.com/struktapp/strukt-base/issues",
                 "source": "https://github.com/struktapp/strukt-base/tree/v1.0.0"
             },
-            "time": "2025-04-13T21:43:32+00:00"
+            "time": "2025-04-23T19:17:57+00:00"
         },
         {
             "name": "strukt/commons",
@@ -327,12 +327,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/strukt-event.git",
-                "reference": "5b1372a7c030d294e9267e460bc1d83d29ca42f6"
+                "reference": "c4dcab575ca7d1b8c1d2e406195720a473f71df0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/strukt-event/zipball/5b1372a7c030d294e9267e460bc1d83d29ca42f6",
-                "reference": "5b1372a7c030d294e9267e460bc1d83d29ca42f6",
+                "url": "https://api.github.com/repos/struktapp/strukt-event/zipball/c4dcab575ca7d1b8c1d2e406195720a473f71df0",
+                "reference": "c4dcab575ca7d1b8c1d2e406195720a473f71df0",
                 "shasum": ""
             },
             "require": {
@@ -363,7 +363,7 @@
                 "issues": "https://github.com/struktapp/strukt-event/issues",
                 "source": "https://github.com/struktapp/strukt-event/tree/v1.1.0"
             },
-            "time": "2025-03-22T18:51:49+00:00"
+            "time": "2025-04-23T17:58:28+00:00"
         },
         {
             "name": "strukt/fs",
@@ -2382,12 +2382,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/strukt-framework.git",
-                "reference": "aa5a626cddfdb06258d0a51f18526aef0b7cbf6b"
+                "reference": "42dc7c771e571f4ef68e005f44940f0acf832910"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/strukt-framework/zipball/aa5a626cddfdb06258d0a51f18526aef0b7cbf6b",
-                "reference": "aa5a626cddfdb06258d0a51f18526aef0b7cbf6b",
+                "url": "https://api.github.com/repos/struktapp/strukt-framework/zipball/42dc7c771e571f4ef68e005f44940f0acf832910",
+                "reference": "42dc7c771e571f4ef68e005f44940f0acf832910",
                 "shasum": ""
             },
             "require": {
@@ -2432,7 +2432,7 @@
                 "issues": "https://github.com/struktapp/strukt-framework/issues",
                 "source": "https://github.com/struktapp/strukt-framework/tree/v1.1.8-alpha"
             },
-            "time": "2025-04-23T07:08:22+00:00"
+            "time": "2025-04-23T12:15:17+00:00"
         },
         {
             "name": "strukt/generator",
@@ -2490,12 +2490,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/pkg-db.git",
-                "reference": "18449e7c26b69b47b5bffe4e3acd375df4f3c3f7"
+                "reference": "d2cec40e9d6353054363404af1f40aa9a6fb48c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/pkg-db/zipball/18449e7c26b69b47b5bffe4e3acd375df4f3c3f7",
-                "reference": "18449e7c26b69b47b5bffe4e3acd375df4f3c3f7",
+                "url": "https://api.github.com/repos/struktapp/pkg-db/zipball/d2cec40e9d6353054363404af1f40aa9a6fb48c4",
+                "reference": "d2cec40e9d6353054363404af1f40aa9a6fb48c4",
                 "shasum": ""
             },
             "require": {
@@ -2533,7 +2533,7 @@
                 "issues": "https://github.com/struktapp/pkg-db/issues",
                 "source": "https://github.com/struktapp/pkg-db/tree/master"
             },
-            "time": "2025-04-23T12:06:09+00:00"
+            "time": "2025-04-23T21:52:19+00:00"
         },
         {
             "name": "strukt/process",

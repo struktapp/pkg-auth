@@ -9,7 +9,7 @@ class Permission extends \Strukt\Framework\Contract\Controller{
 				->from("permission p")
 				->orderBy("p.name", order:"ASC");
 
-		return pdo()->execQuery($sql);
+		return resultset($sql)->yield();
 	}
 
 	public function findByName(string $name){
@@ -35,7 +35,7 @@ class Permission extends \Strukt\Framework\Contract\Controller{
 				->leftjoin("role r ON rp.role_id = r.id")
 				->where("p.name = :name");
 
-		return pdo()->execQuery($sql, ["name"=>$name]);
+		return resultset($sql, ["name"=>$name])->yield();
 	}
 
 	public function pager(array $filter = [], int $start_from = 1, int $page_size = 10){
@@ -46,12 +46,11 @@ class Permission extends \Strukt\Framework\Contract\Controller{
 		$sql = $hasFilter?$sql->where("p.name LIKE :name"):$sql;
 		$sql = $sql->orderBy("id", order:"ASC")->page($start_from, $page_size);
 
-		$pdo = pdo();
 		if($hasFilter)
-			$rs = $pdo->execQuery((string)$sql, ["name"=>$filter["name"]]);
+			$rs = resultset($sql, ["name"=>$filter["name"]])->yield();
 
 		if(negate($hasFilter))
-			$rs = $pdo->execQuery((string)$sql);
+			$rs = resultset($sql)->yield();
 
 		return $rs;
 	}

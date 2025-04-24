@@ -12,12 +12,11 @@ class User extends \Strukt\Framework\Contract\Controller{
 		$sql = $hasFilter?$sql->where("u.username LIKE :username"):$sql;
 		$sql = $sql->orderBy("id", order:"ASC")->page($start_from, $page_size);
 
-		$pdo = pdo();
 		if($hasFilter)
-			$rs = $pdo->execQuery((string)$sql, ["username"=>$filter["username"]]);
+			$rs = resultset($sql, ["username"=>$filter["username"]])->yield();
 
 		if(negate($hasFilter))
-			$rs = $pdo->execQuery((string)$sql);
+			$rs = resultset($sql)->yield();
 
 		return $rs;
 	}
