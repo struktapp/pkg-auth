@@ -24,4 +24,5 @@ xcli
 /bin/db
 /bin/xcli.php
 /bin/xhttp.php
+/bin/install
 /*.sqlite

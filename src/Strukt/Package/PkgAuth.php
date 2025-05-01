@@ -42,7 +42,10 @@ class PkgAuth implements \Strukt\Framework\Contract\Package{
 
 			"cmd_name"=>"PkgAuth",
 			"package"=>"pkg-auth",
-			"files"=>array_map(fn($path)=>str($path)->prepend($db?ds($db):"")->yield(), $this->files)
+			"files"=>array_map(fn($path)=>str($path)->prepend($db?ds($db):"")->yield(), $this->files),
+			"modules"=>array(
+				"AuthModule"
+			)
 		);
 	}
 
@@ -105,7 +108,7 @@ class PkgAuth implements \Strukt\Framework\Contract\Package{
 	 */
 	public function getModules():array|null{
 
-		return null;
+		return $this->manifest["modules"];
 	}
 
 	/**
@@ -160,6 +163,8 @@ class PkgAuth implements \Strukt\Framework\Contract\Package{
 	}
 
 	/**
+	 * @deprecated In package:publish command but with folders instead of zip file
+	 * 
 	 * @return bool
 	 */
 	public function remove():bool{
