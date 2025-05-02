@@ -2,7 +2,7 @@
 
 namespace {{app}};
 
-class Permission extends \Strukt\Db\Type\Pop\Contract\Entity{
+class Permission extends \App\Contract\PopDbModel{
 
 	/**
 	* @Type(string)

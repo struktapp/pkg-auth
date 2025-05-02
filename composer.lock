@@ -84,12 +84,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/gabordemooij/redbean.git",
-                "reference": "599bd825f1b7e0179425a0f6f5af145b817774d2"
+                "reference": "fc08c2f9bc5a4f5074721b0d9039881be244f842"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gabordemooij/redbean/zipball/599bd825f1b7e0179425a0f6f5af145b817774d2",
-                "reference": "599bd825f1b7e0179425a0f6f5af145b817774d2",
+                "url": "https://api.github.com/repos/gabordemooij/redbean/zipball/fc08c2f9bc5a4f5074721b0d9039881be244f842",
+                "reference": "fc08c2f9bc5a4f5074721b0d9039881be244f842",
                 "shasum": ""
             },
             "require": {
@@ -122,7 +122,7 @@
                 "issues": "https://github.com/gabordemooij/redbean/issues",
                 "source": "https://github.com/gabordemooij/redbean/tree/master"
             },
-            "time": "2024-12-14T13:21:50+00:00"
+            "time": "2025-05-01T17:41:56+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -1773,12 +1773,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/strukt-commons.git",
-                "reference": "a5dc029ffedd4efa3394f414a189a0f18d6cba68"
+                "reference": "ff868fb60c09f663e06f3e15bf9dcedfec62ef78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/strukt-commons/zipball/a5dc029ffedd4efa3394f414a189a0f18d6cba68",
-                "reference": "a5dc029ffedd4efa3394f414a189a0f18d6cba68",
+                "url": "https://api.github.com/repos/struktapp/strukt-commons/zipball/ff868fb60c09f663e06f3e15bf9dcedfec62ef78",
+                "reference": "ff868fb60c09f663e06f3e15bf9dcedfec62ef78",
                 "shasum": ""
             },
             "require": {
@@ -1813,7 +1813,7 @@
                 "issues": "https://github.com/struktapp/strukt-commons/issues",
                 "source": "https://github.com/struktapp/strukt-commons/tree/v1.1.2-alpha"
             },
-            "time": "2025-04-15T09:37:30+00:00"
+            "time": "2025-05-01T13:48:42+00:00"
         },
         {
             "name": "strukt/console",
@@ -1950,12 +1950,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/strukt-framework.git",
-                "reference": "7575d33860743b42b72a39c87063a96320822753"
+                "reference": "10e53c4195dc4fcecf1cfeb71e3c41dc9c81459e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/strukt-framework/zipball/7575d33860743b42b72a39c87063a96320822753",
-                "reference": "7575d33860743b42b72a39c87063a96320822753",
+                "url": "https://api.github.com/repos/struktapp/strukt-framework/zipball/10e53c4195dc4fcecf1cfeb71e3c41dc9c81459e",
+                "reference": "10e53c4195dc4fcecf1cfeb71e3c41dc9c81459e",
                 "shasum": ""
             },
             "require": {
@@ -2000,7 +2000,7 @@
                 "issues": "https://github.com/struktapp/strukt-framework/issues",
                 "source": "https://github.com/struktapp/strukt-framework/tree/v1.1.8-alpha"
             },
-            "time": "2025-04-28T21:54:15+00:00"
+            "time": "2025-05-02T19:17:24+00:00"
         },
         {
             "name": "strukt/fs",
@@ -2150,12 +2150,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/struktapp/pkg-db.git",
-                "reference": "30a40395a66be9644f3aebc4a5b7773e432a6c1b"
+                "reference": "243967ec529aef3488af05a5b73cb553c3c8f594"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/struktapp/pkg-db/zipball/30a40395a66be9644f3aebc4a5b7773e432a6c1b",
-                "reference": "30a40395a66be9644f3aebc4a5b7773e432a6c1b",
+                "url": "https://api.github.com/repos/struktapp/pkg-db/zipball/243967ec529aef3488af05a5b73cb553c3c8f594",
+                "reference": "243967ec529aef3488af05a5b73cb553c3c8f594",
                 "shasum": ""
             },
             "require": {
@@ -2196,7 +2196,7 @@
                 "issues": "https://github.com/struktapp/pkg-db/issues",
                 "source": "https://github.com/struktapp/pkg-db/tree/master"
             },
-            "time": "2025-05-01T07:38:26+00:00"
+            "time": "2025-05-02T19:23:30+00:00"
         },
         {
             "name": "strukt/process",
@@ -2439,7 +2439,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/main"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.6.0-BETA1"
             },
             "funding": [
                 {
@@ -2598,7 +2598,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.31.0"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.32.0"
             },
             "funding": [
                 {
@@ -2677,7 +2677,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.31.0"
+                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.32.0"
             },
             "funding": [
                 {
@@ -2759,7 +2759,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.31.0"
+                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.32.0"
             },
             "funding": [
                 {
@@ -2841,7 +2841,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/1.x"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.32.0"
             },
             "funding": [
                 {
@@ -2922,7 +2922,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/1.x"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.32.0"
             },
             "funding": [
                 {
@@ -2999,7 +2999,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php83/tree/v1.31.0"
+                "source": "https://github.com/symfony/polyfill-php83/tree/v1.32.0"
             },
             "funding": [
                 {
@@ -3023,12 +3023,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "5ad38698559cf88b6296629e19b15ef3239c9d7a"
+                "reference": "f021b05a130d35510bd6b25fe9053c2a8a15d5d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/5ad38698559cf88b6296629e19b15ef3239c9d7a",
-                "reference": "5ad38698559cf88b6296629e19b15ef3239c9d7a",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/f021b05a130d35510bd6b25fe9053c2a8a15d5d4",
+                "reference": "f021b05a130d35510bd6b25fe9053c2a8a15d5d4",
                 "shasum": ""
             },
             "require": {
@@ -3083,7 +3083,7 @@
                 "standards"
             ],
             "support": {
-                "source": "https://github.com/symfony/service-contracts/tree/main"
+                "source": "https://github.com/symfony/service-contracts/tree/v3.6.0-BETA1"
             },
             "funding": [
                 {
@@ -3099,7 +3099,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-25T14:21:43+00:00"
+            "time": "2025-04-25T09:37:31+00:00"
         },
         {
             "name": "symfony/string",

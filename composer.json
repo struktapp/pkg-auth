@@ -2,10 +2,10 @@
     "name": "strukt/pkg-auth",
     "description": "Strukt RBAC",
     "type": "strukt-module",
+    "require": {},
     "require-dev": {
         "strukt/pkg-db": "dev-master",
-        "strukt/framework": "v1.1.8-alpha",
-        "sebastian/diff": "^7.0@dev"
+        "strukt/framework": "v1.1.8-alpha"
     },
     "license": "MIT",
     "autoload": {

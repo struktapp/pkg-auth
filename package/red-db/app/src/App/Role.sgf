@@ -2,7 +2,7 @@
 
 namespace {{app}};
 
-class Role extends \Strukt\Db\Type\Red\Contract\Entity{
+class Role extends \App\Contract\RedDbModel{
 
 	/**
 	* @Type(string)
